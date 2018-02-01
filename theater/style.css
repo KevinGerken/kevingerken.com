@@ -1,0 +1,259 @@
+body {
+    background: black;
+    color: rgba(255, 255, 255, .85);
+    margin: 0;
+    max-width: 100vw;
+    font-family: trebuchetms, sans-serif;
+    font-size: 1.3em;
+    overflow-x: hidden;
+}
+
+img {
+    width: 80%;
+    margin: 20px;
+    border: 5px double rgba(255, 223, 0, 1);
+}
+
+h1 {
+    font-size: 9vw;
+    width: auto;
+    text-align: center;
+    margin: 0;
+}
+
+h2 {
+    font-size: 7.5vw;
+    margin: 0;
+}
+
+h3 {
+    font-size: 6vw;
+    margin: 0;
+}
+
+header {
+    background: url(images/theater.jpeg);
+    height: 100vh;
+    background-size: cover;
+}
+
+#burger {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    font-size: 3em;
+    background: transparent;
+    color: white;
+    border: 0;
+}
+
+nav {
+    background: radial-gradient(rgba(255,0, 30, .5), rgba(255, 0, 0, .7), rgba(255,0, 30, .5)); 
+    width: 250px;
+    border-radius: 5px;
+    font-size: 1.5em;
+    position: fixed;
+    right: 10px;
+    top: 75px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    padding: 30px 0;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    padding: 30px 0;
+}
+
+table {
+    text-align: left;
+    margin: auto;
+    padding: 10px;
+}
+
+th, td {
+    padding: 3px;
+    min-width: 6vw;
+    font-size: 5vw;
+}
+
+.theater {
+    text-align: center;
+    padding: 20px;
+    margin: 10px;
+}
+
+.coming {
+    padding: 20px;
+    text-align: center;
+}
+
+#showtimes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: url(images/curtain.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+#concessions {
+    background-image: url(images/popcorn.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    color: rgba(0, 0, 0, .85);
+    padding: 20px;
+    text-shadow: 0px 0px 10px rgba(255, 255, 0, 1);
+}
+
+#soon {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: url(images/curtain.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+#about {
+    background-image: url(images/auditorium.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: bottom;
+    padding: 20px;
+    text-shadow: 0px 0px 10px rgba(255, 0, 0, 1);
+}
+
+p {
+    text-align: justify;
+}
+
+@media only screen and (min-width: 700px) {
+    nav{
+        visibility: visible;
+        position: sticky;
+        position: -webkit-sticky;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        opacity: 1;
+        border: 0;
+        border-radius: 0px;
+        right: 0;
+        top: 0;
+        font-size: 1.5em;
+    }
+    
+    ul {
+        display: flex;
+        padding: 0;
+        margin: 0;
+        justify-content: space-around;   
+    }
+    
+    li {
+        padding: 0px;
+    }
+    
+    #burger {
+        visibility: hidden;
+    }
+    
+    main {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    #showtimes{
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        order: 0;
+    }
+    
+    #concessions {
+        width: calc(50%);
+        padding: 0;
+        order: 1;
+        background-image: url(images/bigpopcorn.jpg);
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    
+    #soon {
+        width: 100%;
+        order: 3;
+    }
+    
+    #about {
+        width: calc(50% - 40px);
+        font-size: 1em;
+        order: 2;
+        background-image: url(images/bigauditorium.jpg);
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: bottom;
+    }
+
+    #concessions th, #concessions td {
+        font-size: 3vw;
+        min-width: 7vw;
+    }
+    
+    h1 {
+    font-size: 7vw;
+    width: 100%;
+    text-align: center;
+    }
+
+    h2 {
+    font-size: 6.5vw;
+    }
+
+    h3 {
+    font-size: 6vw;
+    }
+}
+
+@media only screen and (min-width: 875px) {
+    .theater {
+        width: calc((100%/3) - 60px);
+    } 
+    
+    .coming {
+        width: calc((100% / 3) - 40px);
+    }
+    
+    h2 {
+        font-size: 4vw;
+    }
+    
+    h3 {
+        font-size: 3vw;
+    }
+    
+    img {
+        width: 80%;
+    }
+    
+    table {
+        max-width: 100%;
+    }
+    
+    .theater th,  .theater td {
+        font-size: 1.6vw;
+        min-width: 3vw;
+    }
+}
