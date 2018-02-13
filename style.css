@@ -1,181 +1,182 @@
+html {
+  font-size: 62.5%;
+}
+
 body {
-    background: url(images/back.jpg) fixed left bottom;
-    color: rgba(255, 255, 255, .5);
-    transition: background 7.5s;
-    font-family: 'share tech mono', monospace;
-}
-
-a {
-    color: rgba(255, 255, 255, .5);
-    text-decoration: none;
-}
-
-.left {
-    margin: 0;
-}
-
-header h1 {
-    padding: 0 10px;
-    margin: 0;
-    align-self: center;
-    flex-basis: 25%;
-    text-align: center;
-}
-
-.right {
-    text-align: right;
-    margin: 0;
-}
-
-span {
-    display: inline-block;
-}
-
-.clear {
-    clear: both;
-    border: 10px solid rgba(200, 200, 255, .4);
-    border-radius: 20px;
-}
-
-main {
-    clear: both;
-    text-shadow: 1px 1px 5px rgba(200, 200, 255, .5);
-}
-
-#demo {
-    display: none;
-    flex-wrap: wrap;
-    flex-direction: row;
-    opacity: 0;
-    transition: opacity 5s; 
-    justify-content: space-around;
-}
-
-#demo h1{
-    text-align: right;
-    font-size: 7.5vw;
-    margin: 0;
-    text-shadow: 50px 20px 18px black;
-    flex: 0 100%;
-    padding-bottom: 20px;
-}
-
-.container {
-    display: flex;
-    justify-content: space-around;
-    align-content: space-around;
-    width: 100%;
-    flex-wrap: wrap;
-}
-
-.container div {
-    margin: 2rem;
-}
-
-#home {
-   transition: opacity 5s; 
+  background: url(images/mobback.jpg) fixed;
+  color: rgba(255, 255, 255, .7);
+  transition: background 1s;
+  font-family: 'share tech mono', monospace;
+  font-size: 1.6rem;
 }
 
 header {
-    display: flex;
-    justify-content: space-between;
-    font-size: 1.6em;
+  display: flex;
+  justify-content: space-between;
+  font-size: 2.2rem;
 }
 
-#map {
-    height: 70vh;
-    width: 70vw;
-    margin: 20px auto;
-    border-radius: 50px;
+header h1 {
+  display: none;
+  text-align: left;
+  margin: 0;
 }
 
-#loca {
-    display: block;
-    opacity: 0;
-    transition: opacity 5s;
+a {
+  color: rgba(255, 255, 255, .5);
+  text-decoration: none;
+  text-shadow: 0px 0px 1rem rgba(0, 0, 255, .4);
+}
+
+.left {
+  order: 1;
+  flex-basis: 45%;
+  margin: 0;
+}
+
+.right {
+  text-align: right;
+  order: 4;
+  flex-basis: 55%;
+  margin: 0;
+}
+
+.homeButton {
+  order: 2;
+}
+
+.demoButton {
+  order: 3;
+}
+
+#goLocation {
+  pointer-events: none;
+  cursor: default;
+  text-shadow: none;
+  color: rgba(255, 255, 255, .7);
+}
+
+span {
+  display: inline-block;
+}
+
+.clear {
+  clear: both;
+  border: 1rem solid rgba(200, 200, 255, .4);
+  border-radius: 2rem;
+}
+
+main {
+  clear: both;
+  text-shadow: .1rem .1rem .5rem rgba(200, 200, 255, .5);
+}
+
+#home {
+  transition: opacity 5s; 
+}
+
+#demo {
+  display: inline;
+  flex-wrap: wrap;
+  flex-direction: row;
+  opacity: 0;
+  transition: opacity 5s; 
+  justify-content: space-around;
+}
+
+#demo h1{
+  text-align: left;
+  font-size: 5rem;
+  margin-top: 4rem;
+  text-shadow: 5rem 2rem 1.8rem black;
+  flex: 0 100%;
+  padding-bottom: 2rem;
+}
+
+#demo div {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-content: space-around;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.container div {
+  margin: 2rem;
 }
 
 iframe {
-    height: 175px;
-    width: 250px;
-    border: none;
-    border-radius: 50px;
-    box-shadow: 5px 5px 15px black;
+  height: 17.5rem;
+  width: 25rem;
+  border: none;
+  border-radius: 5rem;
+  box-shadow: .5rem .5rem 1.5rem black;
 }
 
 .demoText {
+  text-align: center;
+  font-size: 3rem;
+  margin: 0;
+}
+
+#loca {
+  display: block;
+  opacity: 0;
+  transition: opacity 5s;
+}
+
+#map {
+  height: 70vh;
+  width: 70vw;
+  margin: 2rem auto;
+  border-radius: 5rem;
+}
+
+@media only screen and (min-width: 700px) {
+  body {
+    background: url(images/back.jpg) fixed left bottom;
+    color: rgba(255, 255, 255, .5);
+    transition: background 7.5s;
+  }
+  
+  header {
+    font-size: 2.6rem;
+  }
+  
+  header h1 {
+    display: block;
+    padding: 0 1rem;
+    align-self: center;
+    flex-basis: 25%;
     text-align: center;
-    font-size: 2em;
+  }
+  
+  #goLocation {
+    pointer-events: auto;
+    cursor: pointer;
+    text-shadow: none;
+    color: rgba(255, 255, 255, .5);
+  }
+  
+  a {
+    text-shadow: none;
+  }
+  
+  a:hover, #goLocation:hover {
+    text-shadow: 0px 0px 1rem black;
+  }
+  
+  #demo {
+    display: none;
+  }
+  
+  #demo h1 {
+    text-align: right;
     margin: 0;
+    font-size: 7rem;
+  } 
 }
-
-a:hover {
-    text-shadow: 0px 0px 10px black;
-}
-
-@media only screen and (max-width: 699px) {
-    header {
-            font-size: 1.2em;
-    }
-    
-    header h1 {
-        display: none;
-        margin: 0;
-        text-align: left;
-    }
-    
-    #demo {
-        display: inline;
-    }
-    
-    #demo div {
-        text-align: center;
-    }
-    
-    .homeButton {
-        order: 3;
-    }
-    
-    .right {
-        order: 2;
-        flex-basis: 55%;
-        margin: 0;
-    }
-    
-    .demoButton {
-        order: 4;
-    }
-    
-    .left {
-        order: 1;
-        margin: 0;
-        flex-basis: 45%;
-    }
-    
-    a {
-        text-shadow: 0px 0px 10px rgba(0, 0, 255, .4);
-    }
-    
-    body {
-        background: url(images/mobback.jpg) fixed;
-    }
-    
-    #demo h1 {
-        text-align: left;
-        margin-top: 40px;
-    }
-    
-    body {
-        color: rgba(255, 255, 255, .7);
-        transition: background 0s;
-    }
-    
-    #goLocation {
-        pointer-events: none;
-        cursor: default;
-        text-shadow: none;
-        color: rgba(255, 255, 255, .7);
-    }
-
-}
-
