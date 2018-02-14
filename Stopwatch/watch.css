@@ -1,6 +1,6 @@
 @font-face {
-    font-family: 'alarm clock';
-    src: url(/fonts/alarmclock.woff);
+  font-family: 'alarm clock';
+  src: url(/fonts/alarmclock.woff);
 }
 
 html {
@@ -10,9 +10,7 @@ html {
 body {
   font-family: 'Gloria Hallelujah', cursive;
   height: 100vh;
-  background: background: #fc4a1a;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom, #f7b733, #fc4a1a);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, #f7b733, #fc4a1a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to bottom, #f7b733, #fc4a1a) fixed; 
 }
 
 .bezel{
@@ -21,31 +19,7 @@ body {
   width: 25rem;
   height: 14rem;
   margin: 5rem auto; 
-  border: 1px solid white
-}
-
-button {
-  width: 25%;
-  height: 2.5rem;
-  border-radius: 10px;
-  transition: .5s;
-  outline: none;
-  background: silver;
-  letter-spacing: .2rem;
-  border-top: 3px solid rgba(255, 255, 255, .8);
-  box-shadow: 0px 3px rgba(100, 100, 100, .8);
-  border-left: 2px solid grey;
-  border-right: 2px solid grey;
-}
-
-button:hover {
-  transform: translate(0, 1px);
-  box-shadow: 0px 2px rgba(100, 100, 100, .8);
-}
-
-button:active {
-  transform: translate(0, 2px);
-  box-shadow: 0px 1px rgba(100, 100, 100, .8);
+  border: .1rem solid white
 }
 
 .screen {
@@ -59,15 +33,39 @@ button:active {
   border-radius: .5rem
 }
 
-.buttons {
-  text-align: center;
-}
-
 .timeDisplay {
   font-family: 'alarm clock';
   font-size: 3rem;
   line-height: 0rem;
   color: rgba(0, 0, 0, .6);
+}
+
+.buttons {
+  text-align: center;
+}
+
+button {
+  width: 25%;
+  height: 2.5rem;
+  border-radius: 1rem;
+  transition: .5s;
+  outline: none;
+  background: silver;
+  letter-spacing: .2rem;
+  border-top: .3rem solid rgba(255, 255, 255, .8);
+  box-shadow: 0px .3rem rgba(100, 100, 100, .8);
+  border-left: .2rem solid grey;
+  border-right: .2rem solid grey;
+}
+
+button:hover {
+  transform: translate(0, .1rem);
+  box-shadow: 0px .2rem rgba(100, 100, 100, .8);
+}
+
+button:active {
+  transform: translate(0, .2rem);
+  box-shadow: 0px .1rem rgba(100, 100, 100, .8);
 }
 
 .paper {
@@ -82,7 +80,8 @@ button:active {
 
 .instruction {
   text-align: center;
-  font-size: 3rem
+  font-size: 3rem;
+  line-height: 4rem;
 }
 
 .logBook p{
@@ -90,5 +89,5 @@ button:active {
 }
 
 hr {
-  border: solid 1px aqua;
+  border: solid .1rem aqua;
 }

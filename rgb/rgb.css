@@ -1,147 +1,149 @@
 * {
-    margin: 0;
-    padding: 0;    
+  margin: 0;
+  padding: 0;    
 }
 
 html {
-    font-size: 62.5%;
+  font-size: 62.5%;
 }
 
 body {
-    background-color: rgb(25, 25, 25);
+  background-color: rgb(25, 25, 25);
 }
 
 h1 {
-    text-align: center;
-    margin: 0px;
-    font-family: monospace;
-    font-size: 5rem;
-    padding: 15px 0;
-    text-transform: uppercase;
-    font-weight: 400;
-}
-
-section {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 600px;
-    margin: auto;
-    justify-content: center;
+  text-align: center;
+  margin: 0px;
+  font-family: monospace;
+  font-size: 3rem;
+  padding: 1.5rem 0;
+  text-transform: uppercase;
+  font-weight: 400;
 }
 
 #interface {
-    max-width: 600px;
-    margin: 0 auto;
+  max-width: 60rem;
+  margin: 0 auto;
 }
 
 .row1 {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
-
-.row2 {
-    display: flex;
-    justify-content: space-between;
-}
-
-.diff{
-    color: white;
-    font-size: 3rem;
-    width: 20%;
-    margin: auto;
-}
-
-#rgb, #hex{
-    border-radius: 0;
-    box-shadow: none;
-    margin: 0;
-    width: 6.2rem;
-    padding: 0;
-    font-size: 3rem
-}
-
-#rgb:hover, #hex:hover {
-    box-shadow: none;
-    transform: none;
-}
-
-#rgb:active, #hex:active {
-    box-shadow: none;
-    transform: none;
-}
-
-.active {
-    background: white;
-}
-
-.diffInput {
-    color: white;
-    font-size: 2rem
-}
-
-input {
-    width: 6rem;
-    font-size: 2rem;
-    outline: none;
-    border-radius: 5%;
-    border: none;
-    margin: 0; 
-}
-
 
 button {
-    width: 12.5rem;
-    font-size: 1.5rem;
-    border: 0;
-    text-transform: uppercase;
-    margin: 3px;
-    outline: none;
-    border-radius: 50%;
-    box-shadow: 0px 5px #191f58;
-    transition: all 1s;
-    padding: 15px;
-    background-color: #535993;
+  width: 12.5rem;
+  font-size: 1.5rem;
+  border: 0;
+  text-transform: uppercase;
+  margin: .3rem;
+  outline: none;
+  border-radius: 50%;
+  box-shadow: 0px .5rem #191f58;
+  transition: all 1s;
+  padding: 1.5rem;
+  background-color: #535993;
 }
 
 button:hover {
-    box-shadow: 0px 4px #080d3b;
-    transform: translateY(1px);
+  box-shadow: 0px .4rem #080d3b;
+  transform: translateY(.1rem);
 }
 
 button:active {
-    box-shadow: 0px 0px;
-    transform: translateY(5px);
-}
-
-.color {
-    flex-basis: 30vw;
-    padding-top: 30vw;
-    border-radius: 15px;
-    transition: opacity, 1s;
-    margin: 1vw;
+  box-shadow: 0px 0px;
+  transform: translateY(.5rem);
 }
 
 #win {
-    display: inline-block;
-    color: white;
-    align-self: center;
+  display: inline-block;
+  color: white;
+  align-self: center;
+  font-size: 1.5rem;
+}
+
+#rgb, #hex{
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+  width: 6.2rem;
+  padding: 0;
+  font-size: 3rem
+}
+
+#rgb:hover, #hex:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+#rgb:active, #hex:active {
+  box-shadow: none;
+  transform: none;
+}
+
+.active {
+  background: white;
+}
+
+.diff{
+  color: white;
+  font-size: 3rem;
+  width: 20%;
+  margin: auto;
+}
+
+.row2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.diffInput {
+  color: white;
+  font-size: 2rem
+}
+
+input {
+  width: 6rem;
+  font-size: 2rem;
+  outline: none;
+  border-radius: 5%;
+  border: none;
+  margin: 0; 
+}
+
+section {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 60rem;
+  margin: auto;
+  justify-content: center;
+}
+
+.color {
+  flex-basis: 30vw;
+  padding-top: 30vw;
+  border-radius: 1.5rem;
+  transition: opacity, 1s;
+  margin: 1vw;
+}
+
+@media only screen and (min-width: 460px) {
+  #win {
     font-size: 2.4rem;
+  }
+  
+  h1 {
+    font-size: 5rem;
+    
+  }
 }
 
 @media only screen and (min-width: 600px) {
-    .color{
-        padding-top: 0vw;
-        max-width: 180px;
-        min-height: 180px;
-        margin: 6px;
-    }
+  .color{
+    padding-top: 0vw;
+    max-width: 180px;
+    min-height: 180px;
+    margin: 6px;
+  }
 }
 
-@media only screen and (max-width: 460px) {
-    #win {
-        font-size: 1.5rem;
-    }
-    h1 {
-        font-size: 3rem;
-}
-    
