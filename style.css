@@ -12,13 +12,17 @@ body {
 
 header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   font-size: 2.2rem;
 }
 
 header h1 {
-  display: none;
-  text-align: left;
+  margin: 0;
+  font-size: 3rem;
+}
+
+header p {
   margin: 0;
 }
 
@@ -28,17 +32,11 @@ a {
   text-shadow: 0px 0px 1rem rgba(0, 0, 255, .4);
 }
 
-.left {
+.top {
   order: 1;
-  flex-basis: 45%;
+  flex-basis: 100%;
   margin: 0;
-}
-
-.right {
-  text-align: right;
-  order: 4;
-  flex-basis: 55%;
-  margin: 0;
+  text-align: center;
 }
 
 .homeButton {
@@ -49,11 +47,9 @@ a {
   order: 3;
 }
 
-#goLocation {
-  pointer-events: none;
-  cursor: default;
-  text-shadow: none;
-  color: rgba(255, 255, 255, .7);
+.right {
+  order: 4;
+  margin: 0;
 }
 
 span {
@@ -153,13 +149,6 @@ iframe {
     align-self: center;
     flex-basis: 25%;
     text-align: center;
-  }
-  
-  #goLocation {
-    pointer-events: auto;
-    cursor: pointer;
-    text-shadow: none;
-    color: rgba(255, 255, 255, .5);
   }
   
   a {

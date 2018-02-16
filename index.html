@@ -1,40 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114280495-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-114280495-1');
+  </script>
   <meta charset="utf-8">
-  <title>Kevin Gerken Web Developer</title>
+  <title>Kevin Gerken Web Developer - Handcrafted Artisanal Websites</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio site of web developer Kevin Gerken.">
   <link rel="stylesheet" href="./style.css">
   <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet">
+  <script src="./script.js" defer></script>
 </head>
 <body id="body">
   <header>
-    <p class="left" itemscope itemtype="http://www.schema.org/Person">
+    <h1 class="top" itemscope itemtype="http://www.schema.org/Person">
       <span itemprop="name">
           Kevin Gerken
       </span>
       <br>
-      Front End <span itemprop="jobTitle"> Web Developer </span>
-    </p>
-    <h1 class="homeButton">
+      Front End <span itemprop="jobTitle"> Web Developer</span>
+    </h1>
+    <p class="homeButton">
       <a href="#" id="goHome">
           Home
       </a>
-    </h1>
-    <h1 class="demoButton">
+    </p>
+    <p class="demoButton">
       <a href="#" id="goDemo">
         Demo
       </a>
-    </h1>
+    </p>
     <p class="right" itemscope itemtype="http://www.schema.org/Person">
       <a id="email" itemprop="email"></a>
-      <br>
-      Current F.O.B.: 
-      <a href="#" id="goLocation">
-           <span itemprop="homeLocation">
-              Higginsville, MO
-          </span>
-      </a>
     </p>
   </header>
   <div class="clear"></div>
@@ -102,7 +105,4 @@
   </main>
   <footer></footer>
 </body>
-    <script src="./script.js"></script>
-    <script async defer
-     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDURyK_Zd72DQ6fpDe9o5FLR1zGb874fAs&callback=initMap"></script> 
 </html>

@@ -1,0 +1,93 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #222;
+}
+
+header {
+  height: 10vh;
+  font-family: 'Bungee Outline';
+  color: #dd0048;
+  text-align: center;
+  font-size: 200%;
+  text-shadow: 0 0 55px #dd0048;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  position: relative;
+  width: 95vw;
+  max-width: 825px;
+  margin: auto;
+}
+
+canvas {
+  display: block;
+  margin: 10px auto;
+  border-radius: 5%;
+  height: inherit;
+  width: inherit;
+  max-width: inherit;
+/*  filter: blur(1px) contrast(150%) brightness(150%) saturate(150%);*/
+}
+
+input {
+  position: absolute;
+  left: 37%;
+  top: 50%;
+  font-family: Monoton;
+  font-size: 10vw;
+  outline: none;
+  border: none;
+  background: rgba(0, 0, 0, 0);
+  color: orange;
+} 
+
+.hidden {
+  display: none;
+}
+
+footer {
+  height: 10vh;
+  width: 90vw;
+  max-width: 800px;
+  border-radius: 5px;
+  background: #ddd;
+  border: 5px double #333;
+  margin: auto;
+  font: 14px sans-serif;
+}
+
+.instructions {
+  width: 50%;
+  height: 100%;
+  border-right: 5px black double;
+}
+
+footer span {
+  font-weight: 600;
+}
+
+.credits {
+  width: 50%;
+  text-align: right;
+  float: right;
+  padding-right: 2px;
+  font-size: 9px;
+}
+
+@media screen and (max-width: 470px) {
+  .instructions {
+    font-size: 12px;
+  }
+  .credits {
+    font-size: 8px;
+  }
+}
