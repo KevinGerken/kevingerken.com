@@ -35,7 +35,6 @@ canvas {
   height: inherit;
   width: inherit;
   max-width: inherit;
-/*  filter: blur(1px) contrast(150%) brightness(150%) saturate(150%);*/
 }
 
 input {

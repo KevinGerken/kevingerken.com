@@ -67,6 +67,22 @@ main {
   text-shadow: .1rem .1rem .5rem rgba(200, 200, 255, .5);
 }
 
+.stack {
+  font-size: 8rem;
+}
+
+.fa-html5{
+  color: rgb(255, 84, 0);
+}
+
+.fa-css3-alt {
+  color: rgb(0, 168, 226);
+}
+
+.fa-js {
+  color: rgb(250, 228, 0);
+}
+
 #home {
   transition: opacity 5s; 
 }
@@ -101,22 +117,45 @@ main {
   flex-wrap: wrap;
 }
 
-.container div {
+.container a div {
   margin: 2rem;
-}
-
-iframe {
   height: 17.5rem;
   width: 25rem;
   border: none;
   border-radius: 5rem;
+  color: #333;
   box-shadow: .5rem .5rem 1.5rem black;
 }
 
-.demoText {
-  text-align: center;
-  font-size: 3rem;
-  margin: 0;
+.container a div p {
+  height: 80%;
+  padding: 2rem 1rem 0 0;
+}
+
+.icon {
+  font-size: 5rem;
+  float: left;
+  margin: 2rem 0 0 2rem;
+}
+
+.fa-space-shuttle{
+  transform: rotate(-90deg);
+}
+
+.yellow {
+  background: rgba(255, 255, 200, 0.8);
+}
+
+.blue {
+  background: rgba(200, 200, 255, 0.8);
+}
+
+.red {
+  background: rgba(255, 200, 200, 0.8);
+}
+
+.green {
+  background: rgba(200, 255, 200, 0.8);
 }
 
 #loca {

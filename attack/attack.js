@@ -1,13 +1,10 @@
-const canvas = document.querySelector(`#game`);
-const w = canvas.width;
-const h = canvas.height;
-const ctx = canvas.getContext(`2d`);
-
 let GF = function() {
+  const canvas = document.querySelector(`#game`);
+  const w = canvas.width;
+  const h = canvas.height;
+  const ctx = canvas.getContext(`2d`);
   const spritesImage = new Image();
-  spritesImage.src=`assets/sprites.png`;
   const backImage = new Image();
-  backImage.src = `assets/SpaceBackground1.png`;
 //armada variables
   const enemyExplosionsArray = explosionSpriteArrayMaker(spritesImage, 1, 70, 30, 30, 8);
   let explosions = [];
@@ -23,64 +20,24 @@ let GF = function() {
 //support variables  
   let gamepad;
   let delta, oldTime;
-  //FPS Counter
-  let frameCount, lastTime, diffTime, fps;
-  const fpsContainer = document.querySelector(`#fpsContainer`);
   //Color Shift
   let g = 99;
   let b = 71;
   let colorShiftDirection = `forward`;
-//Audio
+//Audio Variables
   window.AudioContext = window.AudioContext || window.webkitAudioContext;
   const actx = new AudioContext();
   const destination = actx.destination;
   let bgm;
   let sfx = [];
   let sfxurls = [
-    `/assets/shot 1.mp3`,
-    `/assets/shot2.mp3`,
-    `/assets/Explosion 2.mp3`,
-    `/assets/Explosion 4.mp3`,
-    `/assets/Explosion 5.mp3`
+    `assets/shot 1.mp3`,
+    `assets/shot2.mp3`,
+    `assets/Explosion 2.mp3`,
+    `assets/Explosion 4.mp3`,
+    `assets/Explosion 5.mp3`
   ]
-  
-  function getBGM() {
-    bgm = actx.createBufferSource(); 
-    fetch(`/assets/bgm.mp3`).then(function (response) {
-      return response.arrayBuffer();
-      }).then (function(buffer) {
-        actx.decodeAudioData(buffer, function(decoded) {
-          bgm.buffer = decoded;
-          bgm.connect(destination);
-          bgm.playbackRate.setValueAtTime(0.25, 0);
-          bgm.loop = true;
-          bgm.start(0);
-        });
-    });
-  }
    
-  function getSFX(urls) {
-    for(let i = 0; i < urls.length; i++) {
-      let myRequest = new Request(sfxurls[i]);
-      fetch(myRequest).then(function (response) {
-        return response.arrayBuffer();
-        }).then (function(buffer) {
-          actx.decodeAudioData(buffer, function(decoded) {
-            sfx[i] = decoded;
-          });
-      });
-    }
-  }
-  
-  getSFX(sfxurls);
-  
-  function playSFX(svar) { 
-    let bufferSource = actx.createBufferSource();
-    bufferSource.buffer = svar;
-    bufferSource.connect(destination);
-    bufferSource.start(0);
-   }
- 
   let inputStates = {};
   
   let player = {
@@ -641,6 +598,54 @@ let GF = function() {
   
 //  
 //  
+//  Assets
+//  
+//  
+  
+  function getBGM() {
+    bgm = actx.createBufferSource(); 
+    fetch(`assets/bgm.mp3`).then(function (response) {
+      return response.arrayBuffer();
+      }).then (function(buffer) {
+        actx.decodeAudioData(buffer, function(decoded) {
+          bgm.buffer = decoded;
+          bgm.connect(destination);
+          bgm.playbackRate.setValueAtTime(0.25, 0);
+          bgm.loop = true;
+          bgm.start(0);
+        });
+    });
+  }
+   
+  function getSFX(urls) {
+    for(let i = 0; i < urls.length; i++) {
+      let myRequest = new Request(sfxurls[i]);
+      fetch(myRequest).then(function (response) {
+        return response.arrayBuffer();
+        }).then (function(buffer) {
+          actx.decodeAudioData(buffer, function(decoded) {
+            sfx[i] = decoded;
+          });
+      });
+    }
+  }
+  
+  function playSFX(svar) { 
+    let bufferSource = actx.createBufferSource();
+    bufferSource.buffer = svar;
+    bufferSource.connect(destination);
+    bufferSource.start(0);
+   }
+  
+  function fetchAssets() { 
+      getSFX(sfxurls);
+      spritesImage.src=`assets/sprites.png`;
+      backImage.src = `assets/SpaceBackground1.png`;
+      start();
+  }
+  
+//  
+//  
 //Support
 //  
 //  
@@ -650,24 +655,6 @@ let GF = function() {
     if(index !== -1) {
       array.splice(index, 1);
     }
-  }
-  
-  let measureFPS = function(newTime) {
-    if(lastTime === undefined) {
-      lastTime = newTime;
-      return;
-    }
-    
-    diffTime = newTime - lastTime;
-  
-    if(diffTime >= 1000) {
-      fps = frameCount;
-      frameCount = 0;
-      lastTime = newTime;
-    }
-  
-    fpsContainer.innerHTML = `FPS: ${fps} Player.x: ${player.x}`;
-    frameCount++;
   }
   
   function timer(currentTime) {
@@ -807,7 +794,6 @@ let GF = function() {
       return;
     }
     drawBackground();
-    measureFPS(time);
     displayLives();
     drawPlayer();
     drawBullets();
@@ -849,16 +835,13 @@ let GF = function() {
     player.bulletArray = player.bulletArray.splice(0, -1);
     armada = armada.splice(0, -1);
     enemyBullets = enemyBullets.splice(0, -1);
-    lastTime = undefined;
     delta = 0;
-    diffTime = 0;
     oldTime = undefined;   
     armadaDirection = `right`;
     armadaShotTimeout = false;
     if(wave < 200) {
       armadaBulletFrequency = 2000 - wave * 10;
     } else {armadaBulletFrequency = 0;}
-    frameCount = 0;
     enemyActiveSprite = 0;
     player.activeSprite = 0;
     addEnemies(32);
@@ -938,9 +921,9 @@ let GF = function() {
   };
   
   return {
-    start: start,
+    start: fetchAssets,
   }
 }
 
 let game = new GF();
-setTimeout(game.start, 500);
+game.start();

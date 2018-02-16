@@ -15,6 +15,7 @@
   <meta name="description" content="Portfolio site of web developer Kevin Gerken.">
   <link rel="stylesheet" href="./style.css">
   <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
   <script src="./script.js" defer></script>
 </head>
 <body id="body">
@@ -44,59 +45,52 @@
   <main id="main">
     <article id="home">
       <h1>
-        //Change_log
+        <i class="fas fa-code"></i>Current_Stack
       </h1>
-      <h2>
-        1/15/18
-      </h2>
-      <p>
-        Added <a href="Stopwatch/index.html">a stopwatch.</a>
-      </p>
-      <h2>
-        12/28/17
-      </h2>
-      <p>
-        Added <a href="rgb/index.html">Know Your Colors</a> game.  Select the correct color when given a RGB or Hex value.
-      </p>
-      <h2>
-        11/22/17
-      </h2>
-      <p>
-        Initital upload.
-      </p>
+      <i class="fab fa-html5 stack"></i>
+      <i class="fab fa-css3-alt stack"></i>
+      <i class="fab fa-js stack"></i>
     </article>
     <article id="demo">
       <h1>
         Demo
       </h1>
       <div class="container">
-        <div>
-          <iframe src="Stopwatch/index.html">
-          <p><a href="Stopwatch/index.html">
-              Stopwatch
-          </a></p></iframe>
-          <p class="demoText"><a href="Stopwatch/index.html">
-              Stopwatch
-          </a></p>
+        <a href="attack/index.html">
+          <div class="yellow">
+            <i class="fas fa-space-shuttle icon"></i>
+            <p>
+              A Space Invaders type game called Attack of the Saucermen.  Uses web audio api, local storage, sprite sheets and it's all hand coded.  Fun for 12% of the family.
+            </p>
+          </div>
+        </a>
+        
+        <a href="rgb/index.html">
+          <div class="red">
+            <i class="fas fa-gamepad icon"></i>
+            <p>
+              A little game where you pick a swatch given a RGB or HEX value.  It was my first real dive into javascript and helped to get me hooked.
+            </p>
+          </div>
+        </a>
+        
+        <a href="Stopwatch/index.html">
+          <div class="blue">
+            <i class="fas fa-stopwatch icon"></i>
+            <p>
+              A stopwatch with moving buttons, a div styled to look like a piece of paper and a sweet linear gradient background.  A true case of style over substance.  
+            </p>
           </div>  
-        <div>
-          <iframe src="rgb/index.html">
-          <p><a href="rgb/index.html">
-            Know Your Colors
-          </a></p></iframe>
-          <p class="demoText"><a href="rgb/index.html">
-            Know Your Colors
-          </a></p>
-        </div>
-        <div>
-          <iframe src="./theater/index.html">
-          <p><a href="theater/index.html">
-            Movie theater demo
-          </a></p></iframe>
-          <p class="demoText"><a href="theater/index.html">
-            Movie Theater
-          </a></p>
-        </div>
+        </a>
+        
+        <a href="theater/index.html">
+          <div class="green"> 
+            <i class="fas fa-film icon"></i>
+            <p>  
+              A fictional movie theater site.  Single page, resposive with the ever popular hamburger menu or sticky nav bar on wider devices.
+            </p>          
+          </div>
+        </a>
       </div>
     </article>
     <article id="loca">
