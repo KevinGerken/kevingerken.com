@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="./style.css">
   <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet">
   <link rel="icon" type="image/png" href="images/favicon.png">
-  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
   <script src="./script.js" defer></script>
 </head>
 <body id="body">
@@ -26,7 +26,7 @@
           Kevin Gerken
       </span>
       <br>
-      Front End <span itemprop="jobTitle"> Web Developer</span>
+      <span itemprop="jobTitle"> Web Developer</span>
     </h1>
     <p class="homeButton">
       <a href="#" id="goHome">
@@ -43,26 +43,70 @@
     </p>
   </header>
   <div class="clear"></div>
+  <a href="https://github.com/KevinGerken"><i class="fab fa-github github" title="GitHub"></i></a>
   <main id="main">
     <article id="home">
       <h1>
         <i class="fas fa-code"></i>Current_Stack
       </h1>
-      <i class="fab fa-html5 stack"></i>
-      <i class="fab fa-css3-alt stack"></i>
-      <i class="fab fa-js stack"></i>
+      <ul>
+        <li class="stack-item stack-html">
+          <i class="fab fa-html5" title="HTML5"></i>
+        </li>
+        <li>
+          <span>
+            <div class="stack-item stack-css">
+              <i class="fab fa-css3-alt" title="CSS3"></i>
+            </div>
+          </span>
+          <span>
+            <div class="stack-item stack-sass">
+              <i class="fab fa-sass" title="Sass"></i>
+            </div>
+          </span>
+        </li>
+        <li class="stack-item stack-js">
+          <i class="fab fa-js" title="JavaScript"></i>
+        </li>
+        <li>
+          <span>
+            <span class="stack-item stack-node">
+              <i class="fab fa-node" title="Node.js"></i>
+            </span>
+          </span>
+          <span>
+            <span class="stack-item stack-express">
+              <i class="fab fa-node-js" title="Express"></i>
+            </span>
+          </span>
+        </li>  
+        <li>
+          <span class="stack-item stack-mongo">
+            <i class="fab fa-envira" title="MongoDB"></i>
+          </span>
+        </li>
+      </ul>
     </article>
     <article id="demo">
       <h1>
         Demo
       </h1>
       <div class="container">
-
+        
         <a href="attack/index.html">
           <div class="yellow">
             <i class="fas fa-space-shuttle icon"></i>
             <p>
               A Space Invaders type game called Attack of the Saucermen.  Uses web audio api, local storage, sprite sheets and it's all hand coded.  Fun for 12% of the family.
+            </p>
+          </div>
+        </a>
+        
+        <a href="match/index.html">
+          <div class="orange">
+            <i class="fas fa-burn icon"></i>
+            <p>
+              A match game with responsive canvas size.
             </p>
           </div>
         </a>

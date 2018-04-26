@@ -32,6 +32,10 @@ a {
   text-shadow: 0px 0px 1rem rgba(0, 0, 255, .4);
 }
 
+.homeButton, .demoButton {
+  display: none;
+}
+
 .top {
   order: 1;
   flex-basis: 100%;
@@ -62,25 +66,71 @@ span {
   border-radius: 2rem;
 }
 
+.github {
+  font-size: 5rem;
+  float: right;
+  margin: 1rem;
+  color: rgba(194, 192, 206, 1);
+}
+
 main {
   clear: both;
   text-shadow: .1rem .1rem .5rem rgba(200, 200, 255, .5);
 }
 
-.stack {
+ul {
+  list-style: none;
+}
+
+.stack-item {
   font-size: 8rem;
+  color: #fff;
+  width: 13rem;
+  height: 13rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: all 2s;
 }
 
-.fa-html5{
-  color: rgb(255, 84, 0);
+.stack-html {
+  background: rgba(255, 84, 0, .7);
 }
 
-.fa-css3-alt {
-  color: rgb(0, 168, 226);
+.stack-css {
+  background: rgba(0, 168, 226, .7);
+  top: -2rem;
 }
 
-.fa-js {
-  color: rgb(250, 228, 0);
+.stack-sass {
+  background: rgba(224, 80, 153, .7);
+  top: -2rem;
+  left: -3rem;
+}
+
+.stack-js {
+  background: rgba(250, 228, 0, .7);
+  top:-4rem;
+}
+
+.stack-node {
+  background: rgba(0, 161, 60, .7);
+  top: -6rem;
+}
+
+.stack-express {
+  background: rgba(53, 53, 53, .7);
+  top: -6rem;
+  left: -3rem;
+}
+
+.stack-mongo {
+  top: -8rem;
+  left: 11rem;
+  background: rgba(81, 165, 94, .7);
+  transform: rotate(40deg);
 }
 
 #home {
@@ -146,6 +196,10 @@ main {
   background: rgba(255, 255, 200, .8);
 }
 
+.orange {
+  background: rgba(255, 165, 125, .8);
+}
+
 .blue {
   background: rgba(200, 200, 255, .8);
 }
@@ -174,7 +228,6 @@ main {
 @media only screen and (min-width: 700px) {
   body {
     background: url(images/back.jpg) fixed left bottom;
-    color: rgba(255, 255, 255, .5);
     transition: background 7.5s;
   }
   
@@ -198,6 +251,10 @@ main {
     text-shadow: 0px 0px 1rem black;
   }
   
+  .homeButton, .demoButton {
+    display: block;
+  }
+  
   #demo {
     display: none;
   }
@@ -208,18 +265,64 @@ main {
     font-size: 7rem;
   } 
   
-  .yellow:hover {
-  background: rgba(255, 255, 20, .8);
+  .github {
+    color: rgba(255, 255, 255, .7);
   }
+  
+  .github:hover {
+    color: rgba(50, 50, 50, .5);
+  }
+
+  .stack-css {
+    top: -13rem;
+    left: 11rem;
+  }
+
+  .stack-sass {
+    top: -2rem;
+    left: -3rem;
+  }
+
+  .stack-js {
+    top: -26rem;
+    left: 22rem;
+  }
+
+  .stack-node {
+    top: -39rem;
+    left: 33rem;
+  }
+
+  .stack-express {
+    background: rgba(53, 53, 53, .7);
+    top: -28rem;
+    left: 19rem;
+  }
+
+  .stack-mongo {
+    top: -41rem;
+    left: 44rem;
+    background: rgba(81, 165, 94, .7);
+    transform: rotate(40deg);
+  }
+  
+  .yellow:hover {
+    background: rgba(255, 255, 20, .8);
+  }
+  
+  .orange:hover {
+    background: rgba(255, 165, 0, .8);
+  }
+  
   .blue:hover {
-  background: rgba(20, 20, 255, .8);
-}
+    background: rgba(20, 20, 255, .8);
+  }
 
-.red:hover {
-  background: rgba(255, 20, 20, .8);
-}
+  .red:hover {
+    background: rgba(255, 20, 20, .8);
+  }
 
-.green:hover {
-  background: rgba(20, 255, 20, .8);
-}
+  .green:hover {
+    background: rgba(20, 255, 20, .8);
+  }
 }

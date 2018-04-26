@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: cursive;
+}
+
+header {
+  background: linear-gradient(to left, #9b0000, #ff0000, #9b0000);
+  text-align: center;
+  border-bottom: 15px double gold;
+  border-radius: 0 0 50% 50%;
+}
+
+h1 {
+  margin: 0;
+  padding: 1.5rem 0;
+  font-size: 3rem;
+  color: gold;
+}
+
+button {
+  font-size: 2rem;
+  border: 5px double red;
+  border-radius: 5%;
+  padding: .5rem;
+  background-color: gold;
+  margin-bottom: 1rem;
+  transition: 1s;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: yellow;
+}
+
+button:focus {
+  outline: 2px solid gold;
+}
+
+body {
+  background: black;
+}
+
+canvas {
+  display: block;
+  max-width: 90vw;
+  max-height: 62.5vh;
+  margin: 2rem auto;
+}
+
+p {
+  color: red;
+  text-align: center;
+  font-size: 3rem;
+  font-family: cursive;
+}
