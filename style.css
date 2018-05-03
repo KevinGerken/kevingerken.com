@@ -212,17 +212,8 @@ ul {
   background: rgba(200, 255, 200, .8);
 }
 
-#loca {
-  display: block;
-  opacity: 0;
-  transition: opacity 5s;
-}
-
-#map {
-  height: 70vh;
-  width: 70vw;
-  margin: 2rem auto;
-  border-radius: 5rem;
+.purple {
+  background: rgba(128, 100, 128, .8)
 }
 
 @media only screen and (min-width: 700px) {
@@ -324,5 +315,9 @@ ul {
 
   .green:hover {
     background: rgba(20, 255, 20, .8);
+  }
+  
+  .purple:hover {
+    background: rgba(128, 0, 128, .8)
   }
 }

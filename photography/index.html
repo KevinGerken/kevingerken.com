@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>
+    Elsa Jones Photography
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Raleway" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="flexwrap">
+      <h1>Elsa<br>Jones<br>Photo- <br>graphy</h1>
+    </div>
+    <div class="right"></div>
+  </header>
+  <div class="hidden popup">
+    <button class="close">X</button>
+    <div class="image-flex-container">
+      <img class="popup-image" src="">
+    </div>
+    <div class="controls-flex-container">
+      <button class="arrow-left arrows">&#9655;</button> 
+      <button class="stop-button play-button"></button>
+      <button class="arrow-right arrows">&#9655;</button>
+    </div>
+  </div>
+  <main>
+    <section class="about">
+      <h2>
+        About
+        <br>
+        <span class="vert left">    
+          Elsa
+        </span>
+      </h2>
+      <p>Soufflé jelly-o caramels carrot cake cheesecake gingerbread sugar plum dessert pudding. Pastry pie sweet liquorice liquorice. Fruitcake cupcake bonbon.</p>
+      <p>Lollipop cake dragée marzipan soufflé apple pie donut chocolate cake. Sesame snaps ice cream bear claw. Jelly beans powder carrot cake.</p>
+      <p>Donut toffee danish. Chupa chups sweet oat cake caramels dragée marzipan icing apple pie candy. Tiramisu icing pastry ice cream. Icing liquorice gummies bear claw pie.</p>
+      <img src="images/elsa.png" alt="A woman taking a photo in siloutte">
+      <p>Sweet marzipan chupa chups cake bonbon jelly-o pie. Dessert sweet roll jujubes icing. Tootsie roll bear claw gummies lemon drops jelly pudding sweet chocolate bar.</p>
+      <p>Marshmallow marzipan donut chocolate bar soufflé toffee. Icing fruitcake macaroon pie candy apple pie. Icing halvah pudding candy pudding topping bonbon. Macaroon topping marshmallow.</p>   
+    </section>
+    <section class="galleries">
+      <h2>Galleries</h2>
+      <h3 class="vert">Weddings</h3>
+      <a href="images/01.jpg" class="large">
+        <img src="images/01_thumb.jpg" alt="A newlywed couple outside in front of trees, about to kiss." class="img1">
+      </a>
+      <a href="images/02.jpg" class="reg">
+        <img src="images/02_thumb.jpg" alt="A newlywed couple, kissing, seen from behind sitting on a large rock by a pond." class="img2">
+      </a> 
+      <a href="images/03.jpg" class="reg">
+        <img src="images/03_thumb.jpg" alt="A bride in her gown leaning next to a window in profile." class="img3">
+      </a> 
+      <a href="images/04.jpg" class="large">
+        <img src="images/04_thumb.jpg" alt="A bride walking down a sidewalk, holding her bouqet, train trailing behind." class="img4">
+      </a> 
+      <a href="images/05.jpg" class="reg">
+        <img src="images/05_thumb.jpg" alt="A newlywed couple in a posed kiss on a path through a grove of trees.  The groom behind in a grey suit, the bride tilting her head over her shoulder in white holding a bouqet." class="img5">
+      </a> 
+      <a href="images/06.jpg" class="large">
+        <img src="images/06_thumb.jpg" alt="A bride in her gown laying in the grass, train splayed behind her head with leaves dotting it's surface." class="img6">
+      </a> 
+      <a href="images/07.jpg" class="reg">
+        <img src="images/07_thumb.jpg" alt="A newlywed couple facing each other holding hands, in siloutte in front of the setting sun." class="img7">
+      </a> 
+      <a href="images/08.jpg" class="reg">
+        <img src="images/08_thumb.jpg" alt="A groom hugging his new bride and lifting her into the air in the middle of a road running through a forrest." class="img8">
+      </a> 
+      <a href="images/09.jpg" class="large">
+        <img src="images/09_thumb.jpg" alt="A bride seated in a room with sun shining through the slats of the shutters wearing a salmon colored gown with a long fluffy train." class="img9">
+      </a> 
+      <a href="images/10.jpg" class="reg">
+        <img src="images/10_thumb.jpg" alt="A close shot of a bouqet being held by a bride." class="img10">
+      </a> 
+      <a href="images/11.jpg" class="reg">
+        <img src="images/11_thumb.jpg" alt="A newlywed couple, from behind, cuddling on a park bench looking toward the horizon, colorful fall leaves on the ground." class="img11">
+      </a>   
+      <a href="images/12.jpg" class="sm">
+        <img src="images/12_thumb.jpg" alt="Close up of a couples clasped hands while they recite thier vows." class="img12">
+      </a> 
+      <a href="images/13.jpg" class="sm">
+        <img src="images/13_thumb.jpg" alt="Close up of a bouqet held by a bride with her grooms arms encircling her." class="img13">
+      </a> 
+      <a href="images/14.jpg" class="sm">
+        <img src="images/14_thumb.jpg" alt="Close up of a ring being slid over a groom's finger by his bride." class="img14">
+      </a> 
+      <nav>
+        <button class="weddings btn">
+          Weddings
+        </button>
+        <button class="seniors btn">
+          Seniors
+        </button>
+        <button class="babies btn">
+          Babies
+        </button>
+        <button class="families btn">
+          Families
+        </button>
+      </nav>
+    </section>
+    <section class="contact">
+      <h2>
+        Contact
+      </h2>
+      <form method="post" name="contact-form" action="contact-form-handler.php">
+        <label>
+          Your name:
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+        <label>
+          Your Email:
+          <input type="text" name="email" autocomplete="email" required>
+        </label>
+        <label>
+          Your Message:
+          <textarea name="message" required></textarea>
+        </label>
+        <button class="btn">
+          Submit
+        </button>
+      </form>
+    </section>
+  </main>
+  <footer>
+  </footer>
+</body>
+</html>

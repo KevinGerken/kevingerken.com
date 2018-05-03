@@ -1,7 +1,6 @@
 const home = document.getElementById(`home`).style;
 const demo = document.getElementById(`demo`).style;
 const body = document.getElementById(`body`).style;
-const loca = document.getElementById(`loca`).style;
 
 //E-mail
 const name = `kevin`;
