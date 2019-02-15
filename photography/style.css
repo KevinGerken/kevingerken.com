@@ -52,7 +52,7 @@ header {
   height: 100vh; }
 
 h1 {
-  font-size: 18vh;
+  font-size: 13vh;
   background: url(images/head.jpg);
   background-attachment: fixed;
   background-size: cover;
@@ -291,6 +291,9 @@ footer {
   border-radius: 50px 50px 0 0;
   border-top: solid #4A3524 5px; }
 
+@media screen and (min-width: 500px) {
+  h1 {
+    font-size: 17vh; } }
 @media screen and (min-width: 750px) {
   .sm {
     grid-column: span 1;

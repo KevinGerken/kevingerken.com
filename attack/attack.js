@@ -3,10 +3,11 @@ let GF = function() {
   const w = canvas.width;
   const h = canvas.height;
   const ctx = canvas.getContext(`2d`);
-  const spritesImage = new Image();
   const backImage = new Image();
+  const spritesImage = new Image(); 
+  const waveMultiplier = 300;
 //armada variables
-  const enemyExplosionsArray = explosionSpriteArrayMaker(spritesImage, 1, 70, 30, 30, 8);
+  const enemyExplosionsArray = spriteArrayMaker(spritesImage, 1, 70, 30, 30, 8, true);
   let explosions = [];
   let armada = [];
   let enemyBullets = [];
@@ -15,32 +16,58 @@ let GF = function() {
 //game state variables
   let wave, lives, extraLivesCounter, dying;
   let opacity;
-  //high score
-  let score, highScores, place, initials;
-//support variables  
-  let gamepad;
-  let delta, oldTime;
-  //Color Shift
-  let g = 99;
-  let b = 71;
-  let colorShiftDirection = `forward`;
-//Audio Variables
-  window.AudioContext = window.AudioContext || window.webkitAudioContext;
-  const actx = new AudioContext();
-  const destination = actx.destination;
-  let bgm;
-  let sfx = [];
-  let sfxurls = [
-    `assets/shot 1.mp3`,
-    `assets/shot2.mp3`,
-    `assets/Explosion 2.mp3`,
-    `assets/Explosion 4.mp3`,
-    `assets/Explosion 5.mp3`
-  ]
-   
-  let inputStates = {};
   
-  let player = {
+//  
+//  
+//  Sprites
+//  
+//  
+  
+  function spriteArrayMaker(image, x, y, w, h, numOfSprites, explosion = false) {
+    let outputArray = [];
+    for(let i = 0; i < numOfSprites; i++){
+      let ox = x + w * i;
+      if(explosion) ox = x + (w + 1) * i;
+      outputArray.push([image, ox, y, w, h])
+    }
+    return outputArray;
+  }
+  
+  function spriteAnimation() {
+    if(enemyActiveSprite < 6) {
+     enemyActiveSprite++; 
+    } else {
+      enemyActiveSprite = 0;
+    }
+    if(player.activeSprite === 0) {
+      player.activeSprite++;
+    } else {
+      player.activeSprite--;
+    }
+  }
+  
+  function addEnemies(num) {
+    let x = 300;
+    let y = 100;
+    let counter = 0;
+    for(let i = 0; i < num; i++) {
+      if(counter === 8 ) {
+        y += 75;
+        x = 300;
+        counter = 0;
+      }
+      armada.push(new Enemy(x, y, 1, 50 +  wave * waveMultiplier));
+      x += 60;
+      counter++;
+    }
+  }
+  
+//
+//
+//Objects
+//
+//  
+  const player = {
     x: 475,
     y: h - 70,
     w: 64,
@@ -60,7 +87,7 @@ let GF = function() {
     leftFrames: spriteArrayMaker(spritesImage, 128, 130, 64, 46, 2),
     rightFrames: spriteArrayMaker(spritesImage, 256, 130, 64, 46, 2),
     activeSprite: 0,
-    explosionArray: explosionSpriteArrayMaker(spritesImage, 1, 1, 61, 67, 6),
+    explosionArray: spriteArrayMaker(spritesImage, 1, 1, 61, 67, 6, true),
     explosionCounter: 0,
     explosionMultiplier: 5,
     exploder: false,
@@ -97,8 +124,7 @@ let GF = function() {
   
   class EnemyBullet extends Bullet {
     constructor(x, y, speed) {
-      super(x, y, w, h,),
-      this.speed = speed,
+      super(x, y, speed, w, h),
       this.frames = spriteArrayMaker(spritesImage, 0, 180, 16, 40, 7)
     }
   }
@@ -120,7 +146,7 @@ let GF = function() {
     constructor(x, y) {
       this.x = x;
       this.y = y;
-      this.bulletCollisionArray = explosionSpriteArrayMaker(spritesImage, 0, 280, 30, 30, 2);
+      this.bulletCollisionArray = spriteArrayMaker(spritesImage, 0, 280, 30, 30, 2, true);
       this.counter = 0;
       this.multiplier = 5;
       this.bulletCollision = function() {
@@ -130,59 +156,7 @@ let GF = function() {
     }
   }
   
-//  
-//  
-//  Sprites
-//  
-//  
-  
-  function spriteArrayMaker(image, x, y, w, h, numOfSprites) {
-    let outputArray = [];
-    for(let i = 0; i < numOfSprites; i++){
-      let ox = x + w * i;
-      outputArray.push([image, ox, y, w, h])
-    }
-    return outputArray;
-  }
-  
-  function explosionSpriteArrayMaker(image, x, y, w, h, numOfSprites) {
-    let outputArray = [];
-    for(let i = 0; i < numOfSprites; i++){
-      let ox = x + (w +1) * i;
-      outputArray.push([image, ox, y, w, h])
-    }
-    return outputArray;
-  }
-  
-  function enemySpriteAni() {
-    if(enemyActiveSprite < 6) {
-     enemyActiveSprite++; 
-    } else {
-      enemyActiveSprite = 0;
-    }
-    if(player.activeSprite === 0) {
-      player.activeSprite++;
-    } else {
-      player.activeSprite--;
-    }
-  }
-  
-  function addEnemies(num) {
-    let x = 300;
-    let y = 100;
-    let counter = 0;
-    for(let i = 0; i < num; i++) {
-      if(counter === 8 ) {
-        y += 75;
-        x = 300;
-        counter = 0;
-      }
-      armada.push(new Enemy(x, y, 1, 50 +  wave * 10));
-      x += 60;
-      counter++;
-    }
-  }
-  
+
 //  
 //  
 //   Drawing
@@ -282,8 +256,7 @@ let GF = function() {
   
   function playerHit() {
     for(let bullet of enemyBullets) {
-      if(rectCollide(bullet.x, bullet.y, bullet.w, bullet.h, 
-                     player.x, player.y, player.w, player.h)) {
+      if(rectCollide(bullet, player)) {
         removeElement(enemyBullets, bullet);
         player.exploder = true;
         dying = true;
@@ -294,8 +267,7 @@ let GF = function() {
   function enemyHit() {
     for(let bullet of player.bulletArray) {
       for(let enemy of armada) {
-        if(rectCollide(bullet.x, bullet.y, bullet.w, bullet.h,
-                      enemy.x, enemy.y, enemy.w, enemy.h)){
+        if(rectCollide(bullet, enemy)){
           removeElement(player.bulletArray, bullet);
           removeElement(armada, enemy);
           playSFX(sfx[3]);
@@ -309,8 +281,7 @@ let GF = function() {
   function bulletsCollide() {
     for(let bullet of player.bulletArray) {
       for(let enemyB of enemyBullets) {
-        if(rectCollide(bullet.x, bullet.y, bullet.w, bullet.h,
-                      enemyB.x, enemyB.y, enemyB.w, enemyB.h)){
+        if(rectCollide(bullet, enemyB)){
           removeElement(player.bulletArray, bullet);
           removeElement(enemyBullets, enemyB);
           playSFX(sfx[4]);
@@ -323,21 +294,21 @@ let GF = function() {
   
   function shipsCollide() { 
     for(let enemy of armada) {
-      if(rectCollide(enemy.x, enemy.y, enemy.w, enemy.h,
-                    player.x, player.y, player.w, player.h)){
+      if(rectCollide(enemy, player)){
         removeElement(armada, enemy);
         playSFX(sfx[2]);
         playSFX(sfx[3]);
+        player.exploder = true;
         dying = true;
       }
     }
   }
   
-  function rectCollide(x1, y1, w1, h1, x2, y2, w2, h2) {
-    if(x1 < x2 + w2 && 
-       x1 + w1 > x2 && 
-       y1 < y2 + h2  && 
-       y1 + h1 > y2) {
+  function rectCollide(firstObj, secondObj) {
+    if(firstObj.x < secondObj.x + secondObj.w && 
+       firstObj.x + firstObj.w > secondObj.x && 
+       firstObj.y < secondObj.y + secondObj.h  && 
+       firstObj.y + firstObj.h > secondObj.y) {
       return true;
     } else {
       return false;
@@ -398,7 +369,7 @@ let GF = function() {
     if(armadaShotTimeout === true) {return}
     if(!armada[0]) {return}
     let shooter = armada[Math.floor(Math.random() * armada.length)];
-    enemyBullets.push(new EnemyBullet(shooter.x + shooter.w/2, shooter.y + shooter.h, 50 + wave * 20));
+    enemyBullets.push(new EnemyBullet(shooter.x + shooter.w/2, shooter.y + shooter.h, 50 + wave * waveMultiplier));
     playSFX(sfx[1]);
     armadaShotTimeout = true;
     setTimeout(()=> {armadaShotTimeout = false;}, armadaBulletFrequency);
@@ -478,20 +449,21 @@ let GF = function() {
 //High Scores
 //  
 //  
+  let score, highScores, place, initials;
   
   if(localStorage.getItem(`highScores`)) {
     highScores = JSON.parse(localStorage.getItem(`highScores`));
   } else {
     highScores = [[1000, `RJG`], 
-                    [900, `EEE`], 
-                    [800, `VJG`], 
-                    [700, `NSR`],
-                    [600, `GJG`], 
-                   [500, `EAM`], 
-                   [400, `OJG`], 
-                   [300, `TUE`], 
-                   [200, `FJG`],
-                   [100, `HCN`],]
+                  [900, `EEE`], 
+                  [800, `VJG`], 
+                  [700, `NSR`],
+                  [600, `GJG`], 
+                  [500, `EAM`], 
+                  [400, `OJG`], 
+                  [300, `TUE`], 
+                  [200, `FJG`],
+                  [100, `HCN`],]
   }
 
   function checkScore() { 
@@ -602,6 +574,13 @@ let GF = function() {
 //  
 //  
   
+  window.AudioContext = window.AudioContext || window.webkitAudioContext;
+  const actx = new AudioContext();
+  const destination = actx.destination;
+  let bgm;
+  let bgmSpeed = .25;
+  const sfx = [];
+
   function getBGM() {
     bgm = actx.createBufferSource(); 
     fetch(`assets/bgm.mp3`).then(function (response) {
@@ -610,16 +589,23 @@ let GF = function() {
         actx.decodeAudioData(buffer, function(decoded) {
           bgm.buffer = decoded;
           bgm.connect(destination);
-          bgm.playbackRate.setValueAtTime(0.25, 0);
+          bgm.playbackRate.setValueAtTime(bgmSpeed, 0);
           bgm.loop = true;
           bgm.start(0);
         });
     });
   }
    
-  function getSFX(urls) {
-    for(let i = 0; i < urls.length; i++) {
-      let myRequest = new Request(sfxurls[i]);
+  function getSFX() {
+    const sfxurls = [
+      `assets/shot 1.mp3`,
+      `assets/shot2.mp3`,
+      `assets/Explosion 2.mp3`,
+      `assets/Explosion 4.mp3`,
+      `assets/Explosion 5.mp3`
+    ]
+    for(let i = 0; i < sfxurls.length; i++) {
+      const myRequest = new Request(sfxurls[i]);
       fetch(myRequest).then(function (response) {
         return response.arrayBuffer();
         }).then (function(buffer) {
@@ -631,17 +617,17 @@ let GF = function() {
   }
   
   function playSFX(svar) { 
-    let bufferSource = actx.createBufferSource();
+    const bufferSource = actx.createBufferSource();
     bufferSource.buffer = svar;
     bufferSource.connect(destination);
     bufferSource.start(0);
    }
   
   function fetchAssets() { 
-      getSFX(sfxurls);
-      spritesImage.src=`assets/sprites.png`;
-      backImage.src = `assets/SpaceBackground1.png`;
-      start();
+    getSFX();
+    spritesImage.src=`assets/sprites.png`;
+    backImage.src = `assets/SpaceBackground1.png`;
+    start();
   }
   
 //  
@@ -649,7 +635,9 @@ let GF = function() {
 //Support
 //  
 //  
-  
+  let gamepad;
+  let delta, oldTime;
+  let inputStates = {};
   function removeElement(array, element) {
     const index = array.indexOf(element)
     if(index !== -1) {
@@ -719,8 +707,11 @@ let GF = function() {
     checkAxes(gamepad);
   }
   
+  let g = 99;
+  let b = 71;
+  let colorShiftDirection = `forward`;
   function colorShift() {
-    if(colorShiftDirection === `forward`) {
+      if(colorShiftDirection === `forward`) {
       g += 2;
       b -= 1;
       if(b <= 0) {
@@ -741,6 +732,14 @@ let GF = function() {
 //Loops
 //  
 //  
+  function attractScreen() {
+    titleScreen();
+    if(inputStates.space === true) {
+      newGame();
+      return;
+    }
+    requestAnimationFrame(attractScreen);
+  }
   
   function titleScreen() {
     drawBackground();
@@ -753,15 +752,6 @@ let GF = function() {
     ctx.fillStyle = `rgb(255, ${g}, ${b})`;
     ctx.fillText(`Press Fire To Start`, 500, 450);
     colorShift();
-  }
-  
-  function attractScreen() {
-    titleScreen();
-    if(inputStates.space === true) {
-      newGame();
-      return;
-    }
-    requestAnimationFrame(attractScreen);
   }
   
   function fadeIn() {
@@ -796,7 +786,7 @@ let GF = function() {
     drawBackground();
     displayLives();
     drawPlayer();
-    drawBullets();
+    drawBullets(); 
     drawArmada(); 
     drawEnemyBullets();
     collisions();
@@ -826,6 +816,8 @@ let GF = function() {
   
   function nextWave() {
     wave++;
+    bgmSpeed = bgmSpeed + .1;
+    bgm.playbackRate.setValueAtTime(bgmSpeed, 0);
     sharedReset();
   }
   
@@ -840,7 +832,7 @@ let GF = function() {
     armadaDirection = `right`;
     armadaShotTimeout = false;
     if(wave < 200) {
-      armadaBulletFrequency = 2000 - wave * 10;
+      armadaBulletFrequency = 2000 - wave * 30;
     } else {armadaBulletFrequency = 0;}
     enemyActiveSprite = 0;
     player.activeSprite = 0;
@@ -889,7 +881,7 @@ let GF = function() {
     }
   }
   
-  let start = function () {
+  const start = function () {
     window.addEventListener(`keydown`, function(event){
       if(event.keyCode === 37) {
         inputStates.left = true;
@@ -916,7 +908,7 @@ let GF = function() {
         inputStates.space = false;
       } 
     });
-    setInterval(enemySpriteAni, 250);
+    setInterval(spriteAnimation, 250);
     requestAnimationFrame(attractScreen);
   };
   
