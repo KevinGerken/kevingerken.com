@@ -5,7 +5,7 @@ let GF = function() {
   const ctx = canvas.getContext(`2d`);
   const backImage = new Image();
   const spritesImage = new Image(); 
-  const waveMultiplier = 300;
+  const waveMultiplier = 30;
 //armada variables
   const enemyExplosionsArray = spriteArrayMaker(spritesImage, 1, 70, 30, 30, 8, true);
   let explosions = [];
@@ -16,6 +16,8 @@ let GF = function() {
 //game state variables
   let wave, lives, extraLivesCounter, dying;
   let opacity;
+  let rotationDegree = 1;
+  let lastEnemy = false;
   
 //  
 //  
@@ -187,9 +189,19 @@ let GF = function() {
   }
   
   function drawArmada() {
+    if(rotationDegree > 360) rotationDegree -= 360;
+    rotationDegree += 3; 
     for(let enemy of armada) {
+      ctx.save();
+      let horizontalCenter = (enemy.x + 24);
+      let verticalCenter = (enemy.y + 24);
+      ctx.translate(horizontalCenter, verticalCenter);
+      ctx.rotate(rotationDegree * Math.PI / 180);
+      ctx.translate(-horizontalCenter, -verticalCenter);
       ctx.drawImage(...enemy.frames[enemyActiveSprite], enemy.x, enemy.y, enemy.w, enemy.h);
+      ctx.restore();
     }
+    
   }
   
   function drawBullets() {
@@ -774,7 +786,12 @@ let GF = function() {
    
   let mainLoop = function(time) {
     timer(time); 
+    if(armada.length === 1 && !lastEnemy) {
+      armada[0].speed *= 3; 
+      lastEnemy = true;
+    }
     if(!armada[0]) {
+      lastEnemy = false;
       fadeOut();
       return;
     }
@@ -843,7 +860,7 @@ let GF = function() {
   
   function newGame() {
     dying = false;
-    wave = 1 ;
+    wave = 1;
     extraLivesCounter = 0;
     lives = 2;
     score = 0;

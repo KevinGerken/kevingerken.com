@@ -35,6 +35,7 @@ canvas {
   height: inherit;
   width: inherit;
   max-width: inherit;
+  filter: blur(.5px) hue-rotate(90deg);
 }
 
 input {
