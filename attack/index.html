@@ -5,9 +5,11 @@
   <title>Attack of the Saucer Men</title>
   <script src="./attack.js" defer></script>
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./cabinet.css" id="cabinetSheet">
   <link href="https://fonts.googleapis.com/css?family=Bungee+Outline|Monoton" rel="stylesheet">
 </head>
 <body>
+ <div class="cabinet">
   <header>
     <p>Attack of the</p>
     <p>Saucer Men</p>
@@ -15,14 +17,13 @@
   <main>
     <input type="text" class="hidden" maxlength="3">
     <canvas id="game" width="1000" height="600"></canvas>
-          
   </main>
   <footer>
     <section class="credits">
       <p>
         <span>Asset Credits</span><br>
-        <span>Ship and Enemy Bullet Sprites:</span> <a href="https://opengameart.org/content/shmup-ships">surt</a><br>
-        <span>Explosion and Player Bullet Sprites:</span> <a href="https://opengameart.org/content/explosion-set-2-m484-games">Master484</a><br>
+        <span>Ship, Enemy Bullet Sprites:</span> <a href="https://opengameart.org/content/shmup-ships">surt</a><br>
+        <span>Explosion, Player Bullet Sprites:</span> <a href="https://opengameart.org/content/explosion-set-2-m484-games">Master484</a><br>
         <span>Background Image:</span> <a href="https://opengameart.org/content/space-backgrounds">scorcher24</a><br>
         <span>Background Music:</span> <a href="https://opengameart.org/content/fast-fight-battle-music-looped">XCVG</a><br>
         <span>SFX:</span> <a href="https://opengameart.org/content/8-bit-sound-effect-pack-vol-001">Xenocity</a><br>
@@ -32,10 +33,21 @@
       <p>
         <span>Instructions</span><br>
         <span>Move:</span> Left and Right Arrows <br>
-        <span>Fire:</span> Space, Up, or Down<br>
+        <span>Fire:</span> Space, Up, or Down <br>
         or Use Controller
       </p>
     </section>
   </footer>
+  <div class="controls-container">
+  <div class="controls">
+    <div class="joystick-base"></div>
+    <div class="button"></div>
+    
+  </div>
+   <div class="joystick"></div>
+   <div class="controls-bottom"></div>
+    </div>
+  </div>
+  <a href="#" onclick="cabinetToggle()" id="cabinetToggleLink">Remove Cabinet</a>
 </body>
 </html>

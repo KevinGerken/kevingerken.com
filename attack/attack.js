@@ -18,7 +18,8 @@ let GF = function() {
   let opacity;
   let rotationDegree = 1;
   let lastEnemy = false;
-  
+  let frameCount = 1;
+  let joystick = document.querySelector(`.joystick`) || null;
 //  
 //  
 //  Sprites
@@ -187,7 +188,7 @@ let GF = function() {
     ctx.drawImage(...player.activeFrames[player.activeSprite],
                   player.x, player.y, player.w, player.h);
   }
-  
+   
   function drawArmada() {
     if(rotationDegree > 360) rotationDegree -= 360;
     rotationDegree += 3; 
@@ -337,16 +338,20 @@ let GF = function() {
     if (inputStates.left && player.x > 0 && dying === false) {
       player.x -= calcMove(player.speed);
       player.activeFrames = player.leftFrames;
+      if(joystick) joystick.classList.add(`left`);
     }
     if (inputStates.right && player.x < w - 75 && dying === false) {
       player.x += calcMove(player.speed);
       player.activeFrames = player.rightFrames;
+      if(joystick) joystick.classList.add(`right`);
     }
     if (inputStates.down || inputStates.up || inputStates.space) {
       player.fire();
     }
     if (!inputStates.left && !inputStates.right) {
       player.activeFrames = player.frames;
+      if(joystick) joystick.classList.remove(`left`);
+      if(joystick) joystick.classList.remove(`right`);
     }
   }  
   
@@ -589,7 +594,7 @@ let GF = function() {
   window.AudioContext = window.AudioContext || window.webkitAudioContext;
   const actx = new AudioContext();
   const destination = actx.destination;
-  let bgm;
+  let bgm ;
   let bgmSpeed = .25;
   const sfx = [];
 
@@ -603,7 +608,6 @@ let GF = function() {
           bgm.connect(destination);
           bgm.playbackRate.setValueAtTime(bgmSpeed, 0);
           bgm.loop = true;
-          bgm.start(0);
         });
     });
   }
@@ -639,6 +643,7 @@ let GF = function() {
     getSFX();
     spritesImage.src=`assets/sprites.png`;
     backImage.src = `assets/SpaceBackground1.png`;
+    getBGM();
     start();
   }
   
@@ -798,7 +803,14 @@ let GF = function() {
     if(player.exploder === true) {
       playSFX(sfx[2]);
       playerExplosion();
+      if(joystick) joystick.classList.remove(`left`);
+      if(joystick) joystick.classList.remove(`right`);
       return;
+    }
+    frameCount++;
+    if(frameCount >= 15) {
+      spriteAnimation();
+      frameCount = 0;
     }
     drawBackground();
     displayLives();
@@ -859,13 +871,13 @@ let GF = function() {
   }
   
   function newGame() {
+    bgmSpeed = .25;
     dying = false;
     wave = 1;
     extraLivesCounter = 0;
     lives = 2;
     score = 0;
-    console.log(sfx[0]);
-    getBGM();
+    bgm.start(0);
     sharedReset();
   }
   
@@ -909,6 +921,7 @@ let GF = function() {
       } else if(event.keyCode === 40) {
         inputStates.down = true;
       } else if(event.keyCode === 32) {
+        event.preventDefault();
         inputStates.space = true;
       } 
     });
@@ -925,7 +938,6 @@ let GF = function() {
         inputStates.space = false;
       } 
     });
-    setInterval(spriteAnimation, 250);
     requestAnimationFrame(attractScreen);
   };
   
@@ -935,4 +947,24 @@ let GF = function() {
 }
 
 let game = new GF();
-game.start();
+//game.start();
+
+function cabinetToggle() {
+  const sheet = document.querySelector(`#cabinetSheet`);
+  const link = document.querySelector(`#cabinetToggleLink`);
+  if(sheet.disabled === true) {
+    addCabinet(sheet, link);
+  } else {
+    removeCabinet(sheet, link);
+  }
+}
+
+function removeCabinet(sheet, link) {
+  link.innerHTML = `Add Cabinet`;
+  sheet.disabled = true;
+}
+
+function addCabinet(sheet, link) {
+  link.innerHTML = `Remove Cabinet`;
+  sheet.disabled = false;
+}

@@ -8,12 +8,7 @@ body {
 }
 
 header {
-  height: 10vh;
-  font-family: 'Bungee Outline';
-  color: #dd0048;
-  text-align: center;
-  font-size: 200%;
-  text-shadow: 0 0 55px #dd0048;
+  display: none;
 }
 
 p {
@@ -23,7 +18,7 @@ p {
 
 main {
   position: relative;
-  width: 95vw;
+  width: 95%;
   max-width: 825px;
   margin: auto;
 }
@@ -34,8 +29,7 @@ canvas {
   border-radius: 5%;
   height: inherit;
   width: inherit;
-  max-width: inherit;
-  filter: blur(.5px) hue-rotate(90deg);
+  max-width: 100%;
 }
 
 input {
@@ -55,8 +49,7 @@ input {
 }
 
 footer {
-  height: 10vh;
-  width: 90vw;
+  width: 90%;
   max-width: 800px;
   border-radius: 5px;
   background: #ddd;
