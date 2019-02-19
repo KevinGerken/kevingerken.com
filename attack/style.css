@@ -76,6 +76,22 @@ footer span {
   font-size: 9px;
 }
 
+button {
+  display: block;
+  background: black;
+  margin: 5px auto;
+  border-radius: 5px;
+  border: 1px solid red;
+  padding: 5px;
+}
+
+button a {
+  color: red;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 5px;
+}
+
 @media screen and (max-width: 470px) {
   .instructions {
     font-size: 12px;
