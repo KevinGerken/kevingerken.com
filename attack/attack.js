@@ -11,7 +11,7 @@ let GF = function() {
   let explosions = [];
   let armada = [];
   let enemyBullets = [];
-  let armadaDirection, armadaShotTimeout, armadaBulletFrequency, enemyActiveSprite; 
+  let armadaDirection, armadaShotTimeout, armadaBulletFrequency, enemyActiveSprite, kamikazeTimeout, kamikazeFrequency; 
   let bulletExplosions = [];
 //game state variables
   let wave, lives, extraLivesCounter, dying;
@@ -19,7 +19,8 @@ let GF = function() {
   let rotationDegree = 1;
   let lastEnemy = false;
   let frameCount = 1;
-  let joystick = document.querySelector(`.joystick`) || null;
+  const joystick = document.querySelector(`.joystick`) || null;
+  const buttonA = document.querySelector(`.button`) || null;
 //  
 //  
 //  Sprites
@@ -110,7 +111,9 @@ let GF = function() {
       this.image = spritesImage,
       this.speed = speed,
       this.hp = hp,
-      this.frames = spriteArrayMaker(spritesImage, 0, 230, 48, 48, 7)
+      this.frames = spriteArrayMaker(spritesImage, 0, 230, 48, 48, 7),
+      this.kamikaze = false,
+      this.rotation = false
     }
   }
   
@@ -191,16 +194,20 @@ let GF = function() {
    
   function drawArmada() {
     if(rotationDegree > 360) rotationDegree -= 360;
-    rotationDegree += 3; 
+    rotationDegree += 5; 
     for(let enemy of armada) {
-      ctx.save();
-      let horizontalCenter = (enemy.x + 24);
-      let verticalCenter = (enemy.y + 24);
-      ctx.translate(horizontalCenter, verticalCenter);
-      ctx.rotate(rotationDegree * Math.PI / 180);
-      ctx.translate(-horizontalCenter, -verticalCenter);
-      ctx.drawImage(...enemy.frames[enemyActiveSprite], enemy.x, enemy.y, enemy.w, enemy.h);
-      ctx.restore();
+        if(enemy.rotation === true) {
+        ctx.save();
+        let horizontalCenter = (enemy.x + 24);
+        let verticalCenter = (enemy.y + 24);
+        ctx.translate(horizontalCenter, verticalCenter);
+        ctx.rotate(rotationDegree * Math.PI / 180);
+        ctx.translate(-horizontalCenter, -verticalCenter);
+        ctx.drawImage(...enemy.frames[enemyActiveSprite], enemy.x, enemy.y, enemy.w, enemy.h);
+        ctx.restore();
+      } else {
+        ctx.drawImage(...enemy.frames[enemyActiveSprite], enemy.x, enemy.y, enemy.w, enemy.h);
+      }
     }
     
   }
@@ -346,7 +353,10 @@ let GF = function() {
       if(joystick) joystick.classList.add(`right`);
     }
     if (inputStates.down || inputStates.up || inputStates.space) {
+      buttonA.style.background = `pink`;
       player.fire();
+    } else {
+      buttonA.style.background = `red`;
     }
     if (!inputStates.left && !inputStates.right) {
       player.activeFrames = player.frames;
@@ -359,7 +369,9 @@ let GF = function() {
     if(!armada[0])return;
     let speed = calcMove(armada[0].speed);
     for(let enemy of armada) {
-      if(armadaDirection === `right`) {
+      if(enemy.kamikaze) {
+        kamikazeMovement(enemy, speed);
+      } else if(armadaDirection === `right`) {
         enemy.x += speed;
         if(enemy.x + 50 >= w) {
           armadaDirection = `left`;
@@ -382,6 +394,16 @@ let GF = function() {
     }
   } 
   
+  function kamikazeMovement(enemy, speed) {
+    speed = speed * 2;
+    enemy.y += speed;
+    if(enemy.x > player.x) {
+      enemy.x -= speed;
+    } else {
+      enemy.x += speed;
+    }
+  }
+  
   function armadaFire() {
     if(armadaShotTimeout === true) {return}
     if(!armada[0]) {return}
@@ -390,6 +412,21 @@ let GF = function() {
     playSFX(sfx[1]);
     armadaShotTimeout = true;
     setTimeout(()=> {armadaShotTimeout = false;}, armadaBulletFrequency);
+  }
+  
+  function kamikazeAttack() {
+    if(kamikazeTimeout === true) {return}
+    if(!armada[4]) {return}
+    let kamikaze = armada[Math.floor(Math.random() * armada.length)]
+    setTimeout(() => {kamikaze.kamikaze = true}, 1000);
+    kamikaze.rotation = true;
+    kamikazeTimeout = true;
+    setTimeout(()=> {kamikazeTimeout = false;}, kamikazeFrequency);
+  }
+  
+  function enemyAttacks() {
+    armadaFire();
+    kamikazeAttack();
   }
   
 //  
@@ -471,16 +508,16 @@ let GF = function() {
   if(localStorage.getItem(`highScores`)) {
     highScores = JSON.parse(localStorage.getItem(`highScores`));
   } else {
-    highScores = [[1000, `RJG`], 
-                  [900, `EEE`], 
-                  [800, `VJG`], 
-                  [700, `NSR`],
-                  [600, `GJG`], 
-                  [500, `EAM`], 
-                  [400, `OJG`], 
-                  [300, `TUE`], 
-                  [200, `FJG`],
-                  [100, `HCN`],]
+    highScores = [[200000, `RJG`], 
+                  [150000, `EEE`], 
+                  [125000, `VJG`], 
+                  [100000, `NSR`],
+                  [75000, `GJG`], 
+                  [50000, `EAM`], 
+                  [40000, `OJG`], 
+                  [30000, `TUE`], 
+                  [20000, `FJG`],
+                  [10000, `HCN`],]
   }
 
   function checkScore() { 
@@ -495,7 +532,7 @@ let GF = function() {
       }
       enterInitials();
     } else {
-      attractScreen();
+      displayHighScores();
     }
   }
   
@@ -552,10 +589,7 @@ let GF = function() {
       ctx.fillText(score[0], 650, row);
       row += 40;
     }
-    setTimeout(function() {
-      attractScreen();
-      return;
-    }, 3000);
+    setTimeout(() => {attractScreen()}, 3000);
   }
   
   function checkExtraLives() {
@@ -608,6 +642,7 @@ let GF = function() {
           bgm.connect(destination);
           bgm.playbackRate.setValueAtTime(bgmSpeed, 0);
           bgm.loop = true;
+          bgm.start(0);
         });
     });
   }
@@ -643,7 +678,6 @@ let GF = function() {
     getSFX();
     spritesImage.src=`assets/sprites.png`;
     backImage.src = `assets/SpaceBackground1.png`;
-    getBGM();
     start();
   }
   
@@ -785,6 +819,7 @@ let GF = function() {
       opacity += .005;
       requestAnimationFrame(fadeIn);
     } else {
+      setTimeout(() => {kamikazeTimeout = false}, kamikazeFrequency);
       requestAnimationFrame(mainLoop);
     }
   }
@@ -822,7 +857,7 @@ let GF = function() {
     movePlayer();
     moveArmada();
     drawExplosions();
-    armadaFire();
+    enemyAttacks();
     scoreBoard();
     checkExtraLives();
     updateGamePadStatus();
@@ -860,8 +895,10 @@ let GF = function() {
     oldTime = undefined;   
     armadaDirection = `right`;
     armadaShotTimeout = false;
+    kamikazeTimeout = true;
     if(wave < 200) {
       armadaBulletFrequency = 2000 - wave * 30;
+      kamikazeFrequency = 10000;
     } else {armadaBulletFrequency = 0;}
     enemyActiveSprite = 0;
     player.activeSprite = 0;
@@ -877,7 +914,7 @@ let GF = function() {
     extraLivesCounter = 0;
     lives = 2;
     score = 0;
-    bgm.start(0);
+    getBGM();
     sharedReset();
   }
   
@@ -947,15 +984,19 @@ let GF = function() {
 }
 
 let game = new GF();
-//game.start();
+game.start();
+
+const cabinetSheet = document.querySelector(`#cabinetSheet`);
+const baseSheet = document.querySelector(`#baseStyles`);
+//const touchSheet = document.querySelector(`#touch`);
+//touchSheet.disabled = true;
 
 function cabinetToggle() {
-  const sheet = document.querySelector(`#cabinetSheet`);
   const link = document.querySelector(`#cabinetToggleLink`);
-  if(sheet.disabled === true) {
-    addCabinet(sheet, link);
+  if(cabinetSheet.disabled === true) {
+    addCabinet(cabinetSheet, link);
   } else {
-    removeCabinet(sheet, link);
+    removeCabinet(cabinetSheet, link);
   }
 }
 
@@ -968,3 +1009,9 @@ function addCabinet(sheet, link) {
   link.innerHTML = `Remove Cabinet`;
   sheet.disabled = false;
 }
+
+window.addEventListener(`touchstart`, function() {
+  cabinetSheet.disabled = true;
+  baseSheet.disabled = true;
+  touchSheet.disabled = false;
+});

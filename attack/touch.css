@@ -1,0 +1,41 @@
+canvas{
+    position: fixed;
+    visibility: visible;
+    width: 100vw;
+    height: 100vh;
+    margin: 0; 
+    border-radius: 0;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+  }
+
+input {
+  position: fixed;
+  left: 39%;
+  top: 50%;
+  font-family: Monoton;
+  font-size: 10vw;
+  outline: none;
+  border: none;
+  background: rgba(0, 0, 0, 0);
+  color: orange;
+  z-index: 2;
+} 
+
+.hidden {
+  visibility: hidden;
+}
+
+@media screen and orientation(portrait) {
+  canvas {
+    visibility: hidden;
+  }
+  canvas:before {
+    content: 'Please Rotate Your Screen';
+    z-index: 3;
+    color: white;
+    background: black;
+  }
+}

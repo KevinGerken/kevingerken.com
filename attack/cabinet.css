@@ -65,6 +65,7 @@ main:after { right: -3%; }
 
 footer {
   transform: perspective(1000px) rotateX(35deg);
+  z-index: 1;
 }
 
 .controls-container {
@@ -111,6 +112,7 @@ footer {
   border: 1px solid white;
   top: -40%;
   left: -220%;
+  z-index: 3;
 }
 
 .joystick-base {

@@ -3,9 +3,11 @@
 <head>
   <meta charset="utf-8">
   <title>Attack of the Saucer Men</title>
+  <script src="./gyronorm.complete.min.js" defer></script>
   <script src="./attack.js" defer></script>
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./style.css" id="baseStyles">
   <link rel="stylesheet" href="./cabinet.css" id="cabinetSheet">
+<!--  <link rel="stylesheet" href="./touch.css" id="touch">-->
   <link href="https://fonts.googleapis.com/css?family=Bungee+Outline|Monoton" rel="stylesheet">
 </head>
 <body>
@@ -18,6 +20,7 @@
     <input type="text" class="hidden" maxlength="3">
     <canvas id="game" width="1000" height="600"></canvas>
   </main>
+
   <footer>
     <section class="credits">
       <p>
@@ -33,7 +36,7 @@
       <p>
         <span>Instructions</span><br>
         <span>Move:</span> Left and Right Arrows <br>
-        <span>Fire:</span> Space, Up, or Down <br>
+        <span>Fire:</span> Space <br>
         or Use Controller
       </p>
     </section>
@@ -47,9 +50,12 @@
    <div class="joystick"></div>
    <div class="controls-bottom"></div>
     </div>
+    
   </div>
+  
   <button>
     <a href="#" onclick="cabinetToggle()" id="cabinetToggleLink">Remove Cabinet</a>
   </button>
+
 </body>
 </html>
