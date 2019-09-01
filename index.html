@@ -16,17 +16,21 @@
   <link rel="stylesheet" href="./style.css">
   <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet">
   <link rel="icon" type="image/png" href="images/favicon.png">
-  <script defer src="https://kit.fontawesome.com/f64e5d0d57.js"></script>
   <script src="./script.js" defer></script>
 </head>
+<!--
+  Icons courtesy font awesome https://fontawesome.com/license
+-->
 <body id="body">
   <header>
     <h1 class="top" itemscope itemtype="http://www.schema.org/Person">
-      <span itemprop="name">
-          Kevin Gerken
+      <span class="h1-content">
+        <span itemprop="name">
+            Kevin Gerken
+        </span>
+        <br>
+        <span itemprop="jobTitle"> Web Developer</span>
       </span>
-      <br>
-      <span itemprop="jobTitle"> Web Developer</span>
     </h1>
     <p class="homeButton">
       <a href="#" id="goHome">
@@ -42,48 +46,59 @@
       <a id="email" itemprop="email"></a>
     </p>
   </header>
-  <div class="clear"></div>
-  <a href="https://github.com/KevinGerken"><i class="fab fa-github github" title="GitHub"></i></a>
+  <a href="https://github.com/KevinGerken"><img class="github" src="images/github-brands.svg" alt="github" title="GitHub" /></a>
   <main id="main">
     <article id="home">
       <h1>
-        <i class="fas fa-code"></i>Current_Stack
+        <span><img src="images/code-solid.svg" class="code" alt="code" />Current_Stack</span>
       </h1>
       <ul>
         <li class="stack-item stack-html">
-          <i class="fab fa-html5" title="HTML5"></i>
+          <img src="/images/html5-brands.svg" title="HTML5" alt="HTML5" />
         </li>
         <li>
           <span>
             <div class="stack-item stack-css">
-              <i class="fab fa-css3-alt" title="CSS3"></i>
+              <img src="images/css3-alt-brands.svg" alt="css" title="CSS3" />
             </div>
           </span>
           <span>
             <div class="stack-item stack-sass">
-              <i class="fab fa-sass" title="Sass"></i>
+              <img src="images/sass-brands.svg" alt="sass" title="Sass" />
             </div>
           </span>
         </li>
-        <li class="stack-item stack-js">
-          <i class="fab fa-js" title="JavaScript"></i>
+        <li>
+          <span>
+            <span class="stack-item stack-js">
+              <img src="images/js-brands.svg" alt="JavaScript" title="JavaScript" />
+            </span>
+          </span>
+          <span>
+            <span class="stack-item stack-react">
+                <img src="images/react-brands.svg" alt="react" title="React" />
+            </span>
+          </span>
         </li>
         <li>
           <span>
             <span class="stack-item stack-node">
-              <i class="fab fa-node" title="Node.js"></i>
+              <img src="images/node-brands.svg" alt="node.js" title="Node.js" />
             </span>
           </span>
           <span>
             <span class="stack-item stack-express">
-              <i class="fab fa-node-js" title="Express"></i>
+              <img src="images/node-js-brands.svg" alt="express" title="Express" />
             </span>
           </span>
         </li>  
         <li>
           <span class="stack-item stack-mongo">
-            <i class="fab fa-envira" title="MongoDB"></i>
+            <img src="images/envira-brands.svg" alt="mongodb" title="MongoDB" />
           </span>
+        </li>
+        <li>
+          
         </li>
       </ul>
     </article>
@@ -95,7 +110,7 @@
 
           <a href="travel/">
             <div class="blue">
-              <i class="fas fa-plane-departure icon"></i>
+              <img class="project-icon" src="images/plane-departure-solid.svg" alt="plane" />
               <p>
                 No Permanent Address.  A travel blog design built with react.  Has parallax headers, css scrolling images, and uses react router.
               </p>
@@ -104,7 +119,7 @@
         
         <a href="https://peoplerater.herokuapp.com">
           <div class="brown">
-            <i class="fas fa-users icon"></i>
+            <img class="project-icon" src="images/users-solid.svg" alt="plane" />
             <p>
               People Rater.  Finally a way to sum up all your human interactions on a scale of one to five.  Uses Node, Express and MongoDB on the backend.  HTML, CSS, JS on the frontend.
             </p>
@@ -113,7 +128,7 @@
         
         <a href="photography/index.html">
           <div class="purple">
-            <i class="fas fa-camera icon"></i>
+            <img class="project-icon" src="images/camera-solid.svg" />
             <p>
               A demo photography studio site.  Has a fullscreen header with knockout text, a changeable grid gallery with popup slide show, and a php contact form.
             </p>
@@ -122,7 +137,7 @@
         
         <a href="attack/index.html">
           <div class="yellow">
-            <i class="fas fa-space-shuttle icon"></i>
+            <img class="project-icon space-shuttle" src="images/space-shuttle-solid.svg" alt="space shuttle" />
             <p>
               Attack of the Saucermen.  A Space Invaders style shooter.  Uses web audio api, local storage, sprite sheets and has a CSS arcade cabinet.
             </p>

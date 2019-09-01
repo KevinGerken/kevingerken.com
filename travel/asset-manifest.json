@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/travel/static/css/main.25fd6816.chunk.css",
+    "main.js": "/travel/static/js/main.de8023d8.chunk.js",
+    "main.js.map": "/travel/static/js/main.de8023d8.chunk.js.map",
+    "runtime~main.js": "/travel/static/js/runtime~main.11399f7e.js",
+    "runtime~main.js.map": "/travel/static/js/runtime~main.11399f7e.js.map",
+    "static/js/2.933a4120.chunk.js": "/travel/static/js/2.933a4120.chunk.js",
+    "static/js/2.933a4120.chunk.js.map": "/travel/static/js/2.933a4120.chunk.js.map",
+    "index.html": "/travel/index.html",
+    "precache-manifest.2f23b4e672f263f657b8cf486fea4e3c.js": "/travel/precache-manifest.2f23b4e672f263f657b8cf486fea4e3c.js",
+    "service-worker.js": "/travel/service-worker.js",
+    "static/css/main.25fd6816.chunk.css.map": "/travel/static/css/main.25fd6816.chunk.css.map",
+    "static/media/About.css": "/travel/static/media/aboutme.e6b21723.jpg",
+    "static/media/Article.css": "/travel/static/media/gear.9f656dfc.jpg",
+    "static/media/judy.jpg": "/travel/static/media/judy.a6536b97.jpg",
+    "static/media/palm.png": "/travel/static/media/palm.0af01d57.png"
+  }
+}
